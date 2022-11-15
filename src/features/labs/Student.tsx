@@ -4,21 +4,15 @@ import { Student, LoginPayload } from '../../models';
 
 export interface StudentCardProps {
     student: Student
+    onClick?: (student: Student) => void
 }
 
-// Props are READ ONLY
-// DO NOT MUTATE Props
-// Props are immutable
 
-export function StudentCard({ student }: StudentCardProps) {
+export function StudentCard({ student, onClick }: StudentCardProps) {
     let { name, isHero } = student
 
-    // name = 'Bob'
     function handleClick() {
-        student.name = 'Bob'
-        console.log(student);
-        // -not trigger re-render
-        // - inconsistent data
+        onClick?.(student)
     }
     return (
         <div onClick={handleClick}>

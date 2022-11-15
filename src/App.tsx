@@ -1,27 +1,33 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
-import { Footer, Header } from './components/common'
-import { StudentCard as StudentCard } from './features/labs/Student'
-import { Student } from './models/student'
 
-// import Header from './components/common/Header'
-// import Footer from './components/common/Footer'
+let run = 0
+function calcCount() {
+  run += 5
+  console.log('calc count', run);
+  return run
+}
+
 
 function App() {
+  let i = 0
+  const [showMore, setShowMore] = useState(false)
   const [count, setCount] = useState(0)
+  const [name, setName] = ('')
 
-  function abc() { }
-
-  const john: Student = {
-    name: '',
-    age: 3
+  function handleIncreaseClick() {
+    setCount(count + 1)
+    i += 5
   }
+
+  console.log({ count, i });
+
+
   return (
     <div>
-      <Header />
-      <StudentCard student={john} />
-      <Footer />
+      <p>Count: {count}</p>
+      <button onClick={handleIncreaseClick}>Increase count</button>
+      {showMore && <p>{name}</p>}
     </div>
   )
 }
